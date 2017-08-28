@@ -1,32 +1,52 @@
 const path = require('path');
 const pathConfig = require('./path_config');
 const webpack = require('webpack');
-
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 const DEVELOPMENT = process.env.NODE_ENV === "development";
 const PRODUCTION = process.env.NODE_ENV === "production";
 
-const plugins = PRODUCTION ?
-      [ new webpack.optimize.UglifyJsPlugin({
-
-	  comments: false,
-
-	  mangle: true,
-
-	  compress: {
-	      warnings: true
-	  }
-      }) ] :
-      [] ;
+const plugins = [];
 
 plugins.push(new webpack.DefinePlugin({
     DEVELOPMENT: JSON.stringify(DEVELOPMENT),
     PRODUCTION: JSON.stringify(PRODUCTION)
 }));
 
+if(PRODUCTION){
+    plugins.push(new webpack.optimize.UglifyJsPlugin({
+	  comments: false,
+	  mangle: true,
+	  compress: {
+	      warnings: true
+	  }
+    }));
+
+    plugins.push(new ExtractTextPlugin({
+	filename: '[contenthash]-style.css'
+    }));
+
+    plugins.push(new HTMLWebpackPlugin({
+	template: 'index-template.html'
+    }));
+}
+
+if(DEVELOPMENT){
+    plugins.push(new HTMLWebpackPlugin({
+	template: 'index-template.html'
+    }));
+}
 
 const cssIdentifier = PRODUCTION ?
       'localIdentName=[hash]' :
       'localIdentName=[path][name]---[local]-[hash]';
+
+const cssLoader = PRODUCTION ?
+      ExtractTextPlugin.extract({
+	  fallback: 'style-loader',
+	  use: ['css-loader?localIdentName=' + cssIdentifier]
+      }) :
+      ['style-loader', 'css-loader?'+cssIdentifier];
 
 const config = {
     entry:{
@@ -104,7 +124,7 @@ const config = {
 
 	    {
 		test: /\.(css)$/,
-		loaders: ['style-loader', 'css-loader?'+cssIdentifier],
+		loaders: cssLoader,
 		exclude: /node_modules/
 	    }
 
@@ -112,7 +132,5 @@ const config = {
 	]
     }
 };
-
-console.log(config);
 
 module.exports = config;

@@ -12,7 +12,7 @@ const newMessage = () => {
     return Button.button +
 	Linux +
 	Tux +
-	`<div>${mul(4,3)}</div>` +
+	`<div>${mul(3,6)}</div>` +
 	`<div class="${style.box}" <p>PROD: ${PRODUCTION}</p> <p>DEV: ${DEVELOPMENT}</p></div>`;
 };
 

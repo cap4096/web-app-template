@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "dev": "rimraf dist && NODE_ENV=development node server.js",
     "build": "rimraf dist && NODE_ENV=production webpack",
-    "dev": "NODE_ENV=development node server.js",
     "prod": "npm run build; NODE_ENV=productuion node server.js"
   },
   "keywords": [],

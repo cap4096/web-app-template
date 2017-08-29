@@ -80,8 +80,8 @@ const config = {
 		    babelrc: false,
 
 		    presets: [['es2015', {modules: false}],
-			      'stage-0',
-			      'react'],
+			      'react',
+			      'stage-1'],
 
 		    plugins: [
 			'transform-exponentiation-operator',
@@ -117,18 +117,16 @@ const config = {
 	    },
 
 	    {
-		test: /\.(png|gif|jpg|jpeg)$/,
-		loader: 'url-loader?limit=10000&name=images/[hash]-[name].[ext]',
-		exclude: /node_modules/
+		test: /\.(png|woff|woff2|eot|ttf|svg|gif|jpg|jpeg)$/,
+		loader: 'url-loader?limit=10000&name=images/[hash]-[name].[ext]'
+		//exclude: /node_modules/
 	    },
 
 	    {
 		test: /\.(css)$/,
-		loaders: cssLoader,
-		exclude: /node_modules/
+		loaders: cssLoader
+		//exclude: /node_modules/
 	    }
-
-
 	]
     }
 };

@@ -1,8 +1,16 @@
+import 'semantic-ui-css/semantic.min.css';
+import { Component } from 'react';
+import { render } from 'react-dom';
+import App from './components/App';
+
+const app = document.getElementById('root');
+render(<App/>, app);
+
+
 import style from './assets/css/style.css';
 import Linux from './image';
 import Tux from './image2';
 
-const app = document.getElementById('root');
 
 
 app.innerHTML = `

@@ -1,17 +1,18 @@
 import React from 'react';
-import Header from './Header';
-import Main from './Main';
 
-export default class App extends React.Component {
+export default class Page4 extends React.Component {
     constructor(props){
         super(props);
+
+        this.state = {
+        };
     }
 
     render(){
+
         return(
             <div>
-              <Header/>
-              <Main/>
+                This is PAGE 4.
             </div>
         );
     }

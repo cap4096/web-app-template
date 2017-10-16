@@ -40,6 +40,7 @@ app.use('/', express.static(pathConfig.outDir));
 if(DEVELOPMENT){
     const webpack = require('webpack');
     const config = require('./webpack.config.js');
+    const DashboardPlugin = require('webpack-dashboard/plugin');
     //const WebpackDevServer = require('webpack-dev-server');
 
     config.entry.client.unshift(
@@ -54,6 +55,8 @@ if(DEVELOPMENT){
 
     const webpackDevMiddleware = require('webpack-dev-middleware');
     const compiler = webpack(config);
+
+    compiler.apply(new DashboardPlugin());
 
     app.use(webpackDevMiddleware(compiler, {
         filename: config.output.filenme,

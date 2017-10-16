@@ -6,14 +6,16 @@ import { render } from 'react-dom';
 import App from './components/App';
 
 import { BrowserRouter } from 'react-router-dom';
-
+import { Provider } from 'react-redux';
 const app = document.getElementById('root');
 
 
 const mainPage=(
-    <BrowserRouter>
-        <App/>
-    </BrowserRouter>
+    <Provider>
+        <BrowserRouter>
+            <App/>
+        </BrowserRouter>
+    </Provider>
 );
 
 render(mainPage, app);

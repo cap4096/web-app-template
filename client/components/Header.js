@@ -15,7 +15,7 @@ export default class Header extends React.Component {
     render(){
 
         return(
-            <header>
+            <header id="tab_selector">
                 <nav>
                     <ul>
                         <li><Link to='/'>HOME</Link></li>

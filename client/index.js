@@ -1,16 +1,19 @@
+require('bootstrap/dist/css/bootstrap.css');
+
 /*eslint-disable no-unused-vars*/
 import React from 'react';
 /*eslint-enable no-unused-vars*/
 import { render } from 'react-dom';
+import store from './store';
+import { Provider } from 'react-redux';
 import App from './components/App';
 
 import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
 const app = document.getElementById('root');
 
 
 const mainPage=(
-    <Provider>
+    <Provider store={store}>
         <BrowserRouter>
             <App/>
         </BrowserRouter>

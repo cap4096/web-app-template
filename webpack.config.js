@@ -137,7 +137,17 @@ const config = {
             options: {
                 babelrc: false,
 
-                presets: [['es2015', {modules: false}],'react','stage-2'],
+                presets: [
+                    ['env', {
+                        modules: false,
+                        targets: {
+                            browsers: ["last 2 versions", "ie >=11","safari >9"]
+                        }
+                    }],
+
+                    'react',
+                    'stage-2'
+                ],
 
 
                 plugins: [
